@@ -1,0 +1,99 @@
+palette = "catppuccin_mocha"
+
+# Định dạng hiển thị prompt 2 dòng kết hợp thông tin Git
+format = """
+$directory$git_branch$git_status
+$character
+"""
+
+# Chờ 500ms trước khi timeout các lệnh kiểm tra ngầm
+command_timeout = 500
+
+# Tạo một dòng trống trước prompt để dễ nhìn
+add_newline = true
+
+# Dòng 2: Ký tự prompt chính
+[character]
+success_symbol = "[λ](bold green)"
+error_symbol = "[λ](bold red)"
+
+# Dòng 1: Cấu hình hiển thị thư mục
+[directory]
+truncation_length = 3
+style = "bold mauve"
+repo_root_style = "bold mauve"
+read_only = " 🔒"
+read_only_style = "red"
+
+# Dòng 1: Cấu hình nhánh Git
+[git_branch]
+symbol = "🌿 "
+style = "blue"
+format = "on [$symbol$branch]($style) "
+
+# Dòng 1: Trạng thái Git
+[git_status]
+style = "yellow"
+format = "[([$all_status$ahead_behind]($style))]($style)"
+conflicted = "="
+ahead = "⇡"
+behind = "⇣"
+diverged = "⇕"
+untracked = "?"
+stashed = "$"
+modified = "!"
+staged = "+"
+renamed = "»"
+deleted = "✘"
+
+# Tắt tất cả các module ngôn ngữ khác để giữ giao diện sạch sẽ
+[aws]
+disabled = true
+
+[gcloud]
+disabled = true
+
+[golang]
+disabled = true
+
+[lua]
+disabled = true
+
+[nodejs]
+disabled = true
+
+[python]
+disabled = true
+
+[rust]
+disabled = true
+
+
+# Catppuccin Mocha
+[palettes.catppuccin_mocha]
+rosewater = "#f5e0dc"
+flamingo = "#f2cdcd"
+pink = "#f5c2e7"
+mauve = "#cba6f7"
+red = "#f38ba8"
+maroon = "#eba0ac"
+peach = "#fab387"
+yellow = "#f9e2af"
+green = "#a6e3a1"
+teal = "#94e2d5"
+sky = "#89dceb"
+sapphire = "#74c7ec"
+blue = "#89b4fa"
+lavender = "#b4befe"
+text = "#cdd6f4"
+subtext1 = "#bac2de"
+subtext0 = "#a6adc8"
+overlay2 = "#9399b2"
+overlay1 = "#7f849c"
+overlay0 = "#6c7086"
+surface2 = "#585b70"
+surface1 = "#45475a"
+surface0 = "#313244"
+base = "#1e1e2e"
+mantle = "#181825"
+crust = "#11111b"

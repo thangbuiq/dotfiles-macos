@@ -1,0 +1,12 @@
+# Catppuccin Mocha, matches the SketchyBar theme
+red:    "#F38BA8"
+orange: "#FAB387"
+yellow: "#F9E2AF"
+green:  "#A6E3A1"
+blue:   "#89B4FA"
+purple: "#CBA6F7"
+pink:   "#CBA6F7"
+primary:   purple
+secondary: blue
+background: "#1E1E2E"
+background-opacity: 0.8

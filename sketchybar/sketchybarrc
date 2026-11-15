@@ -1,0 +1,122 @@
+#!/bin/bash
+# Floating rounded bar with pill-shaped items, inspired by FelixKratz's setup.
+
+source "$CONFIG_DIR/colors.sh"
+PLUGIN_DIR="$CONFIG_DIR/plugins"
+FONT="JetBrainsMono Nerd Font Mono"
+
+##### Bar #####
+sketchybar --bar \
+  position=top \
+  topmost=off \
+  height=28 \
+  y_offset=5 \
+  margin=10 \
+  corner_radius=0 \
+  padding_left=8 \
+  padding_right=8 \
+  blur_radius=0 \
+  color=$TRANSPARENT \
+  border_width=0 \
+  shadow=off
+
+##### Defaults #####
+default=(
+  updates=when_shown
+  padding_left=4
+  padding_right=4
+  icon.font="$FONT:Bold:13.0"
+  label.font="$FONT:Bold:12.0"
+  icon.color=$TEXT
+  label.color=$TEXT
+  icon.padding_left=8
+  icon.padding_right=4
+  label.padding_left=4
+  label.padding_right=8
+  background.height=20
+  background.corner_radius=0
+  background.color=$TRANSPARENT
+  background.border_width=0
+)
+sketchybar --default "${default[@]}"
+
+##### Spaces (left) #####
+SPACE_ICONS=("1" "2" "3" "4" "5" "6" "7" "8" "9" "10")
+for i in "${!SPACE_ICONS[@]}"; do
+  sid="$((i + 1))"
+  space=(
+    space="$sid"
+    icon="${SPACE_ICONS[i]}"
+    icon.padding_left=12
+    icon.padding_right=12
+    icon.color=$SUBTEXT
+    label.drawing=off
+    padding_left=2
+    padding_right=2
+    background.color=$ITEM_BG
+    background.border_color=$TRANSPARENT
+    script="$PLUGIN_DIR/space.sh"
+  )
+  sketchybar --add space space."$sid" left --set space."$sid" "${space[@]}"
+done
+
+sketchybar --add item front_app left \
+           --set front_app \
+             icon=󰣇 icon.padding_left=14 label.padding_right=20 \
+             icon.color=$ACCENT \
+             script="$PLUGIN_DIR/front_app.sh" \
+           --subscribe front_app front_app_switched
+
+##### Right items (added right-to-left) #####
+sketchybar --add item clock right \
+           --set clock update_freq=10 icon=󰃰 icon.color=$BLUE \
+             script="$PLUGIN_DIR/clock.sh" \
+           --add item volume right \
+           --set volume icon.color=$ORANGE script="$PLUGIN_DIR/volume.sh" \
+           --subscribe volume volume_change \
+           --add item battery right \
+           --set battery update_freq=15 icon.color=$GREEN \
+             script="$PLUGIN_DIR/battery.sh" \
+           --subscribe battery system_woke power_source_change
+
+sketchybar --add item cpu left \
+           --set cpu update_freq=5 icon=󰻠 icon.color=$RED script="$PLUGIN_DIR/cpu.sh" \
+           --add item ram left \
+           --set ram update_freq=10 icon=󰍛 icon.color=$YELLOW script="$PLUGIN_DIR/mem.sh" \
+           --add item disk left \
+           --set disk update_freq=60 icon=󰋊 icon.color=$BLUE script="$PLUGIN_DIR/disk.sh" \
+           --add item ports left \
+           --set ports update_freq=10 icon=󰒍 icon.color=$ORANGE padding_left=14 script="$PLUGIN_DIR/ports.sh" \
+           --add item wifi right \
+           --set wifi update_freq=15 icon=󰖩 icon.color=$BLUE script="$PLUGIN_DIR/wifi.sh" \
+           --add item vpn right \
+           --set vpn update_freq=10 icon=󰦝 script="$PLUGIN_DIR/vpn.sh" \
+           --add item net right \
+           --set net update_freq=2 icon=󰛳 icon.color=$GREEN script="$PLUGIN_DIR/net.sh"
+
+##### Group items into two pills so the center (notch) stays empty #####
+sketchybar --add bracket left_pill '/space\..*/' front_app cpu ram disk \
+           --set left_pill \
+             background.color=$BAR_COLOR \
+             background.border_color=$ITEM_BORDER \
+             background.border_width=1 \
+             background.corner_radius=0 \
+             background.height=22 \
+                                  \
+           --add bracket right_pill clock volume battery wifi vpn net \
+           --set right_pill \
+             background.color=$BAR_COLOR \
+             background.border_color=$ITEM_BORDER \
+             background.border_width=1 \
+             background.corner_radius=0 \
+             background.height=22
+
+sketchybar --add bracket ports_pill ports \
+           --set ports_pill \
+             background.color=$BAR_COLOR \
+             background.border_color=$ITEM_BORDER \
+             background.border_width=1 \
+             background.corner_radius=0 \
+             background.height=22
+
+sketchybar --update

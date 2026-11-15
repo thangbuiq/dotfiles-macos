@@ -1,0 +1,31 @@
+ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
+# Install missing modules and update ${ZIM_HOME}/init.zsh if missing or outdated.
+if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZIM_CONFIG_FILE:-${ZDOTDIR:-${HOME}}/.zimrc} ]]; then
+  source /opt/homebrew/opt/zimfw/share/zimfw.zsh init
+fi
+# Initialize modules.
+source ${ZIM_HOME}/init.zsh
+
+[[ "$TERM_PROGRAM" == "iTerm.app" ]] && test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+
+# bun completions
+[ -s "/Users/thangbuiq/.bun/_bun" ] && source "/Users/thangbuiq/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+. "$HOME/.local/bin/env"
+
+# opencode
+export PATH=/Users/thangbuiq/.opencode/bin:$PATH
+
+. "$HOME/.cargo/env"
+
+# Added by anfra installer
+export PATH="/Users/thangbuiq/.anfra/bin:$PATH"
+export JAVA_HOME=/opt/homebrew/opt/openjdk@25
+export PATH=$JAVA_HOME/bin:$PATH
+alias cool='nvim .'
+fastfetch

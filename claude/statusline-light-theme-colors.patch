@@ -1,0 +1,27 @@
+--- /Users/thangbuiq/.claude/codemie-budget-status.js.bak	2026-11-14 13:19:19
++++ /Users/thangbuiq/.claude/codemie-budget-status.js	2026-11-14 13:19:19
+@@ -588,15 +588,15 @@
+ }
+ var C = {
+   reset: "\x1B[0m",
+-  purple: "\x1B[38;2;177;185;249m",
+-  green: "\x1B[0;32m",
+-  yellow: "\x1B[0;33m",
+-  red: "\x1B[0;31m",
+-  cyan: "\x1B[0;36m",
+-  blue: "\x1B[0;94m",
+-  gray: "\x1B[0;37m",
+-  magenta: "\x1B[0;35m",
+-  white: "\x1B[1;37m"
++  purple: "\x1B[38;2;136;57;239m",
++  green: "\x1B[38;2;64;160;43m",
++  yellow: "\x1B[38;2;223;142;29m",
++  red: "\x1B[38;2;210;15;57m",
++  cyan: "\x1B[38;2;4;165;229m",
++  blue: "\x1B[38;2;30;102;245m",
++  gray: "\x1B[38;2;92;95;119m",
++  magenta: "\x1B[38;2;234;118;203m",
++  white: "\x1B[1;38;2;76;79;105m"
+ };
+ var c = (color, text) => `${color}${text}${C.reset}`;
+ function formatReset(epochSeconds) {

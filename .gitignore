@@ -1,0 +1,4 @@
+.DS_Store
+ubersicht/widgets/**/lib/icons/
+*.bak
+ubersicht/widgets/theme-controller.widget/lib/menubar-darkness
