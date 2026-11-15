@@ -1,5 +1,5 @@
---- /Users/thangbuiq/.claude/codemie-budget-status.js.bak	2026-11-14 13:19:19
-+++ /Users/thangbuiq/.claude/codemie-budget-status.js	2026-11-14 13:19:19
+--- a/claude-code-budget-status.js
++++ b/claude-code-budget-status.js
 @@ -588,15 +588,15 @@
  }
  var C = {
