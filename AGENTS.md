@@ -9,8 +9,9 @@ walk the user through the manual steps it prints. Do not push or commit for the 
 - `fastfetch/config.jsonc`: minimal config tuned for a light terminal. Symlinked to `~/.config/fastfetch`.
 - `ubersicht/widgets/*.widget`: copied (not linked) to `~/Library/Application Support/Übersicht/widgets`.
   Widgets are CoffeeScript or JSX; they hot-reload on save.
-- `claude/statusline-light-theme-colors.patch`: color changes for a Claude Code statusline script on light
-  terminals. Apply by hand to the user's own script if they have one. The script itself is not stored here.
+- `claude/`: Claude Code statusline backup. `claude-code-budget-status.js` (already has the light-theme colors) goes to
+  `~/.claude/`; merge `statusline-settings.json` into `~/.claude/settings.json`. `statusline-light-theme-colors.patch` is the
+  color diff, only needed to re-apply onto an unpatched copy of the script.
 - `starship/starship.toml`: Mocha-palette prompt, linked to `~/.config/starship.toml`.
 - `terminal/catppuccin-mocha.terminal`: Terminal.app profile (from catppuccin/Terminal.app), imported by `install.sh`. Font JetBrainsMono NFM 13, 140x40 window, closes on shell exit.
 - `zsh/`: `zshrc`, `zshenv`, `hushlogin` (silences "Last login"; `zshenv` sets `SHELL_SESSIONS_DISABLE=1`). Linked to `~/.zshrc`, `~/.zshenv`, `~/.hushlogin`.
